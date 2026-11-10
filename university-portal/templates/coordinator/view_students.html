@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}All students{% endblock %}
+{% block content %}
+<div class="container">
+    <h1 class="page-title">All students</h1>
+    <p class="page-sub">{{ students|length }} students enrolled.</p>
+    <div class="panel"><div class="table-wrap">
+        <table class="data-table">
+            <thead><tr><th>Roll number</th><th>Name</th><th>Branch</th><th>Semester</th><th>Batch</th></tr></thead>
+            <tbody>
+            {% for s in students %}
+            <tr><td>{{ s.roll_number }}</td><td>{{ s.name }}</td><td>{{ s.branch }}</td><td>{{ s.semester }}</td><td>{{ s.batch_year }}</td></tr>
+            {% else %}
+            <tr><td colspan="5" class="empty">No students yet.</td></tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div></div>
+</div>
+{% endblock %}
