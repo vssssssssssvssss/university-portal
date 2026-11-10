@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block title %}Log in{% endblock %}
+{% block content %}
+<div class="login-page">
+    <div class="login-card">
+        <div class="login-info">
+            <h1>UniPortal</h1>
+            <p>Your college results and notices in one place.</p>
+            <ul>
+                <li>See your semester results the day they are uploaded</li>
+                <li>Read the latest college notices</li>
+                <li>Check your student profile</li>
+            </ul>
+        </div>
+        <div class="login-form">
+            <h2>Log in</h2>
+            <p class="page-sub">Use your college roll number.</p>
+            {% if error %}<div class="alert alert-error">{{ error }}</div>{% endif %}
+            <form action="/login" method="POST">
+                <div class="form-group">
+                    <label for="username">Roll number</label>
+                    <input type="text" id="username" name="username" placeholder="e.g. 2023CS001" autocomplete="username" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" autocomplete="current-password" required>
+                </div>
+                <button type="submit" class="btn btn-block">Log in</button>
+            </form>
+            <p class="hint">Testing: student 2023CS001 / student123, coordinator coordinator1 / coord123</p>
+        </div>
+    </div>
+</div>
+{% endblock %}
