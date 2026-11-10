@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block title %}My results{% endblock %}
+{% block content %}
+<div class="container">
+    <h1 class="page-title">My results</h1>
+    <p class="page-sub">{{ student.name }}, {{ student.roll_number }}</p>
+
+    {% if semesters %}
+    <form method="GET" class="filter" style="margin-bottom:20px">
+        <div>
+            <label for="semester">Semester</label>
+            <select name="semester" id="semester">
+                <option value="">All semesters</option>
+                {% for s in semesters %}
+                <option value="{{ s }}" {% if s == selected_semester %}selected{% endif %}>Semester {{ s }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <button type="submit" class="btn">Show</button>
+    </form>
+    {% endif %}
+
+    {% if results %}
+    <div class="panel">
+        <div class="table-wrap">
+        <table class="data-table">
+            <thead><tr><th>Subject</th><th>Code</th><th>Marks</th><th>Out of</th><th>Percentage</th><th>Status</th></tr></thead>
+            <tbody>
+            {% for r in results %}
+            <tr>
+                <td>{{ r.subject_name }}</td>
+                <td>{{ r.subject_code }}</td>
+                <td>{{ r.marks }}</td>
+                <td>{{ r.max_marks }}</td>
+                <td>{{ r.percentage }}%</td>
+                <td>{% if r.status == 'Pass' %}<span class="badge badge-pass">Pass</span>{% else %}<span class="badge badge-fail">Fail</span>{% endif %}</td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        </div>
+    </div>
+    <p class="overall">Overall: {{ overall }}% ({{ passed }} of {{ total }} subjects passed)</p>
+    <p class="summary">{{ summary }}</p>
+    {% else %}
+    <p class="empty">No results have been uploaded for you yet.</p>
+    {% endif %}
+</div>
+{% endblock %}
