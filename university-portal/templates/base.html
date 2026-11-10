@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}UniPortal{% endblock %} | University Student Portal</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+{% if session.user_id %}
+<nav class="navbar">
+    <a href="/" class="brand">UniPortal</a>
+    <div class="nav-links">
+        {% if session.role == 'student' %}
+        <a href="/student/dashboard">Dashboard</a>
+        <a href="/student/results">Results</a>
+        <a href="/student/notices">Notices</a>
+        <a href="/student/profile">Profile</a>
+        {% elif session.role == 'coordinator' %}
+        <a href="/coordinator/dashboard">Dashboard</a>
+        <a href="/coordinator/add-result">Add result</a>
+        <a href="/coordinator/post-notice">Post notice</a>
+        <a href="/coordinator/students">Students</a>
+        {% endif %}
+    </div>
+    <div class="nav-user">
+        <span>{{ session.username }}</span>
+        <a href="/logout" class="btn-logout">Log out</a>
+    </div>
+</nav>
+{% endif %}
+{% block content %}{% endblock %}
+</body>
+</html>
