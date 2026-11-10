@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %}Dashboard{% endblock %}
+{% block content %}
+<div class="container">
+    <h1 class="page-title">Welcome, {{ student.name }}</h1>
+    <p class="page-sub">{{ student.branch }}, semester {{ student.semester }}</p>
+
+    <div class="facts">
+        <div class="fact"><b>{{ student.roll_number }}</b><span>Roll number</span></div>
+        <div class="fact"><b>{{ student.branch }}</b><span>Branch</span></div>
+        <div class="fact"><b>Semester {{ student.semester }}</b><span>Current semester</span></div>
+        <div class="fact"><b>{{ student.batch_year }}</b><span>Batch</span></div>
+    </div>
+
+    <div class="actions">
+        <a href="/student/results" class="action">View results</a>
+        <a href="/student/notices" class="action">Read notices</a>
+        <a href="/student/profile" class="action">My profile</a>
+    </div>
+
+    <div class="panel">
+        <div class="panel-head">
+            <h2>Latest notices</h2>
+            <a href="/student/notices" class="btn-outline">See all</a>
+        </div>
+        <div class="panel-body">
+            {% for notice in recent_notices %}
+            <div class="notice">
+                <h3>{{ notice.title }}</h3>
+                <p>{{ notice.content[:150] }}{% if notice.content|length > 150 %}...{% endif %}</p>
+                <small>{{ notice.posted_at[:10] }}</small>
+            </div>
+            {% else %}
+            <p class="empty">No notices yet.</p>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}
