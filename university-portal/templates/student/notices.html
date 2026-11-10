@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %}Notices{% endblock %}
+{% block content %}
+<div class="container">
+    <h1 class="page-title">Notice board</h1>
+    <p class="page-sub">Newest first.</p>
+    <div class="panel"><div class="panel-body">
+        {% for n in notices %}
+        <div class="notice">
+            <h3>{{ n.title }}</h3>
+            <p>{{ n.content }}</p>
+            <small>Posted {{ n.posted_at[:10] }}</small>
+        </div>
+        {% else %}
+        <p class="empty">No notices at the moment.</p>
+        {% endfor %}
+    </div></div>
+</div>
+{% endblock %}
