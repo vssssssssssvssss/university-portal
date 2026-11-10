@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}Coordinator dashboard{% endblock %}
+{% block content %}
+<div class="container">
+    <h1 class="page-title">Coordinator dashboard</h1>
+    <p class="page-sub">Manage results and notices for your students.</p>
+    <div class="facts">
+        <div class="fact"><b>{{ total_students }}</b><span>Students</span></div>
+        <div class="fact"><b>{{ total_notices }}</b><span>Active notices</span></div>
+    </div>
+    <div class="actions">
+        <a href="/coordinator/add-result" class="action">Add a result</a>
+        <a href="/coordinator/post-notice" class="action">Post a notice</a>
+        <a href="/coordinator/students" class="action">View all students</a>
+    </div>
+</div>
+{% endblock %}
