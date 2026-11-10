@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}My profile{% endblock %}
+{% block content %}
+<div class="container">
+    <h1 class="page-title">My profile</h1>
+    <p class="page-sub">Your details as the college has them.</p>
+    <div class="panel"><div class="panel-body">
+        <div class="profile-row"><span>Name</span><b>{{ student.name }}</b></div>
+        <div class="profile-row"><span>Roll number</span><b>{{ student.roll_number }}</b></div>
+        <div class="profile-row"><span>Branch</span><b>{{ student.branch }}</b></div>
+        <div class="profile-row"><span>Semester</span><b>{{ student.semester }}</b></div>
+        <div class="profile-row"><span>Batch</span><b>{{ student.batch_year }}</b></div>
+        <div class="profile-row"><span>Email</span><b>{{ student.email or 'Not added' }}</b></div>
+        <div class="profile-row"><span>Phone</span><b>{{ student.phone or 'Not added' }}</b></div>
+    </div></div>
+</div>
+{% endblock %}
